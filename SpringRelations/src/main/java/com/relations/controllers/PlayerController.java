@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/players")
+@RequestMapping("/api/player")
 @RestController
 public class PlayerController {
 
@@ -27,6 +27,11 @@ public class PlayerController {
     @PostMapping
     public Player postPlayer(@RequestBody Player player){
         return playerService.save(player);
+    }
+
+    @PostMapping ("/all")
+    public List<Player> postManyPlayers(@RequestBody List <Player> players){
+        return playerService.saveAll(players);
     }
 
     @PutMapping("/{id}")

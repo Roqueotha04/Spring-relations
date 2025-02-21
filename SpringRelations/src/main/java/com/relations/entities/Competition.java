@@ -1,5 +1,6 @@
 package com.relations.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,16 +19,18 @@ public class Competition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     /// JPA crea la clave primaria por mi
     private Long id;
+
     private String name;
 
-    @Column(name="cuantity_price", columnDefinition = "VARCHAR(20)",nullable = false)
+    //@Column(name="cuantity_price", columnDefinition = "VARCHAR(20)",nullable = false)
     private Integer cuantityPrice;
     /// indico que es de tipo DATE EN SQL
-    @Column (name ="starting_date", columnDefinition = "DATE",unique = true)
+    @Column (name ="starting_date", columnDefinition = "DATE", updatable = false)
     private LocalDate startingDate;
     @Column(name="ending_date")
     private LocalDate endingDate;
 
-    @ManyToMany(mappedBy = "competitionsList")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "competitionsList", fetch = FetchType.LAZY)
     private List<Club> clubList;
 }

@@ -25,6 +25,6 @@ public class Player {
     private String nationality;
     private String position;
 
-    @ManyToOne (targetEntity = Club.class)
+    @ManyToOne (targetEntity = Club.class, fetch = FetchType.LAZY)
     private Club club;
 }

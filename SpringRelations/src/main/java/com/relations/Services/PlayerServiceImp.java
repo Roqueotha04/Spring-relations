@@ -45,4 +45,9 @@ public class PlayerServiceImp implements PlayerService{
         existingPlayer.ifPresent(p -> player1.setId(p.getId()));
         return save(player1);
     }
+
+    @Override
+    public List<Player> saveAll(List<Player> playerList) {
+        return (List<Player>) playerRepository.saveAll(playerList);
+    }
 }
